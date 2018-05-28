@@ -25,6 +25,23 @@ $ docker run -it -p 9099:9099 -v $(pwd)/testdata:/conf adamdecaf/rdap_exporter:0
 2018/05/28 21:15:34 example.cz expires in 458.00 days
 ```
 
+### Example Prometheus Alert
+
+The following alert will be triggered when domains expire within 45 days
+
+```yaml
+groups:
+ - name: ./domain.rules
+   rules:
+    - alert: DomainExpiring
+      expr: domain_expiration{} < 45
+      for: 24h
+      labels:
+        severity: warning
+      annotations:
+        description: "{{ $labels.domain }} expires on {{ humanizeTimestamp $value }}"
+```
+
 ### Developing / Contributing
 
 If you find a bug, have a question or want more metrics exposed feel free to open either an issue or a Pull Request. I'll try and review it quickly and have it merged.
