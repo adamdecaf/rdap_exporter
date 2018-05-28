@@ -25,8 +25,8 @@ var (
 	// CLI flags
 	flagAddress = flag.String("address", ":9099", "HTTP listen address")
 	flagDomainFile = flag.String("domain-file", "", "Path to file with domains (separated by newlines)")
-	flagInterval = flag.Duration("interval", defaultInterval, "Interval to check domains at")
-	flagVersion = flag.Bool("version", false, "Print the rdap_exporter version")
+	flagInterval   = flag.Duration("interval", defaultInterval, "Interval to check domains at")
+	flagVersion    = flag.Bool("version", false, "Print the rdap_exporter version")
 
 	// Prometheus metrics
 	domainExpiration = prometheus.NewGaugeVec(
@@ -68,16 +68,12 @@ func main() {
 
 	// Setup internal checker
 	check := &checker{
-		domains: domains,
-		handler: domainExpiration,
-		client: &rdap.Client{},
+		domains:  domains,
+		handler:  domainExpiration,
+		client:   &rdap.Client{},
 		interval: *flagInterval,
 	}
-	go func() {
-		if err := check.checkAll(); err != nil {
-			log.Fatal(err)
-		}
-	}()
+	go check.checkAll()
 
 	// Add domain_expiration to /metrics
 	h := promhttp.HandlerFor(prometheus.DefaultGatherer, promhttp.HandlerOpts{})
@@ -94,11 +90,11 @@ type checker struct {
 
 	client *rdap.Client
 
-	t *time.Ticker
+	t        *time.Ticker
 	interval time.Duration
 }
 
-func (c *checker) checkAll() error {
+func (c *checker) checkAll() {
 	if c.t == nil {
 		c.t = time.NewTicker(c.interval)
 		c.checkNow() // check domains right away after ticker setup
@@ -109,7 +105,6 @@ func (c *checker) checkAll() error {
 			c.checkNow()
 		}
 	}
-	return nil
 }
 
 func (c *checker) checkNow() {
@@ -129,7 +124,7 @@ func (c *checker) checkNow() {
 
 func (c *checker) getExpiration(d string) (*time.Time, error) {
 	req := &rdap.Request{
-		Type: rdap.DomainRequest,
+		Type:  rdap.DomainRequest,
 		Query: d,
 	}
 	resp, err := c.client.Do(req)
