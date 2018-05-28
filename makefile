@@ -12,4 +12,7 @@ deps:
 	dep ensure -update
 
 docker: build
-	docker build -t adamdecaf/rdap-exporter:$(VERSION) -f Dockerfile .
+	docker build -t adamdecaf/rdap_exporter:$(VERSION) -f Dockerfile .
+
+test:
+	go test -v ./...
