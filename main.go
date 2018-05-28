@@ -84,7 +84,7 @@ func main() {
 	http.Handle("/metrics", h)
 
 	if err := http.ListenAndServe(*flagAddress, nil); err != nil {
-		log.Fatalf("ERROR binding to %s: %v", flagAddress, err)
+		log.Fatalf("ERROR binding to %s: %v", *flagAddress, err)
 	}
 }
 
@@ -157,7 +157,7 @@ func (c *checker) getExpiration(d string) (*time.Time, error) {
 func readDomainFile(where string) ([]string, error) {
 	fullPath, err := filepath.Abs(where)
 	if err != nil {
-		return nil, fmt.Errorf("when expanding %s: %v", flagDomainFile, err)
+		return nil, fmt.Errorf("when expanding %s: %v", *flagDomainFile, err)
 	}
 
 	fd, err := os.Open(fullPath)
