@@ -23,7 +23,7 @@ var (
 	defaultInterval, _ = time.ParseDuration("12h")
 
 	// CLI flags
-	flagAddress = flag.String("address", ":9099", "HTTP listen address")
+	flagAddress    = flag.String("address", "0.0.0.0:9099", "HTTP listen address")
 	flagDomainFile = flag.String("domain-file", "", "Path to file with domains (separated by newlines)")
 	flagInterval   = flag.Duration("interval", defaultInterval, "Interval to check domains at")
 	flagVersion    = flag.Bool("version", false, "Print the rdap_exporter version")
