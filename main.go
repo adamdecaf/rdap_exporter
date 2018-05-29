@@ -17,7 +17,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-const Version = "0.1.1"
+const Version = "0.1.2-dev"
 
 var (
 	defaultInterval, _ = time.ParseDuration("12h")
