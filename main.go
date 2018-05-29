@@ -79,6 +79,7 @@ func main() {
 	h := promhttp.HandlerFor(prometheus.DefaultGatherer, promhttp.HandlerOpts{})
 	http.Handle("/metrics", h)
 
+	log.Printf("listenting on %s", *flagAddress)
 	if err := http.ListenAndServe(*flagAddress, nil); err != nil {
 		log.Fatalf("ERROR binding to %s: %v", *flagAddress, err)
 	}
