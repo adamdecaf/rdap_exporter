@@ -117,7 +117,7 @@ func (c *checker) checkNow() {
 			c.handler.WithLabelValues(c.domains[i]).Set(0)
 			continue
 		}
-		days := math.Floor(expr.Sub(time.Now()).Hours() / 24)
+		days := math.Floor(time.Until(*expr).Hours() / 24)
 		c.handler.WithLabelValues(c.domains[i]).Set(days)
 		log.Printf("%s expires in %.2f days", c.domains[i], days)
 	}
