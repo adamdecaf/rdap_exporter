@@ -1,6 +1,6 @@
 # rdap_exporter
 
-Registration Data Access Protocol (RDAP) prometheus exporter.
+Registration Data Access Protocol (RDAP) prometheus exporter. Originally based on [shift/domain_exporter](https://github.com/shift/domain_exporter).
 
 ### Metrics
 
