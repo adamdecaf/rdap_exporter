@@ -39,7 +39,7 @@ groups:
       labels:
         severity: warning
       annotations:
-        description: "{{ $labels.domain }} expires on {{ humanizeTimestamp $value }}"
+        description: "{{ $labels.domain }} expires in {{ $value }} days"
 ```
 
 ### Developing / Contributing
