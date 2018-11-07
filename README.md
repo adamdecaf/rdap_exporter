@@ -1,6 +1,6 @@
 # rdap_exporter
 
-[![Build Status](https://travis-ci.com/adamdecaf/rdap_exporter.svg?branch=master)](https://travis-ci.com/adamdecaf/rdap_exporter)
+[![Build Status](https://travis-ci.org/adamdecaf/rdap_exporter.svg?branch=master)](https://travis-ci.org/adamdecaf/rdap_exporter)
 [![Go Report Card](https://goreportcard.com/badge/github.com/adamdecaf/rdap_exporter)](https://goreportcard.com/report/github.com/adamdecaf/rdap_exporter)
 
 Registration Data Access Protocol (RDAP) prometheus exporter. Originally based on [shift/domain_exporter](https://github.com/shift/domain_exporter).
