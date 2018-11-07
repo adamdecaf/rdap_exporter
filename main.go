@@ -100,7 +100,7 @@ func (c *checker) checkAll() {
 		c.t = time.NewTicker(c.interval)
 		c.checkNow() // check domains right away after ticker setup
 	}
-	for _ = range c.t.C {
+	for range c.t.C {
 		c.checkNow()
 	}
 }
