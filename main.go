@@ -17,7 +17,7 @@ import (
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 
-const Version = "0.1.2-dev"
+const version = "0.1.2-dev"
 
 var (
 	defaultInterval, _ = time.ParseDuration("12h")
@@ -51,11 +51,11 @@ func main() {
 	flag.Parse()
 
 	if *flagVersion {
-		fmt.Println(Version)
+		fmt.Println(version)
 		os.Exit(1)
 	}
 
-	log.Printf("starting rdap_exporter (%s)", Version)
+	log.Printf("starting rdap_exporter (%s)", version)
 
 	// read and verify config file
 	if *flagDomainFile == "" {
@@ -100,11 +100,8 @@ func (c *checker) checkAll() {
 		c.t = time.NewTicker(c.interval)
 		c.checkNow() // check domains right away after ticker setup
 	}
-	for {
-		select {
-		case <-c.t.C:
-			c.checkNow()
-		}
+	for _ = range c.t.C {
+		c.checkNow()
 	}
 }
 
