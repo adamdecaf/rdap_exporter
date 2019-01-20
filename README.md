@@ -23,8 +23,8 @@ Running the image looks like the following:
 
 ```
 # Using testdata/good.domains from repository
-$ docker run -it -p 9099:9099 -v $(pwd)/testdata:/conf adamdecaf/rdap_exporter:0.1.0-dev -domain-file=/conf/good.domains
-2018/05/28 21:15:31 starting rdap_exporter (0.1.0-dev)
+$ docker run -it -p 9099:9099 -v $(pwd)/testdata:/conf adamdecaf/rdap_exporter:0.1.3 -domain-file=/conf/good.domains
+2018/05/28 21:15:31 starting rdap_exporter (0.1.3)
 2018/05/28 21:15:34 example.cz expires in 458.00 days
 ```
 
