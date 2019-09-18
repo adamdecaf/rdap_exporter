@@ -26,6 +26,7 @@ var (
 	flagAddress    = flag.String("address", "0.0.0.0:9099", "HTTP listen address")
 	flagDomainFile = flag.String("domain-file", "", "Path to file with domains (separated by newlines)")
 	flagInterval   = flag.Duration("interval", defaultInterval, "Interval to check domains at")
+	flagQuiet      = flag.Bool("q", false, "Quiet mode: don't print domains being monitored")
 	flagVersion    = flag.Bool("version", false, "Print the rdap_exporter version")
 
 	// Prometheus metrics
@@ -64,6 +65,11 @@ func main() {
 	domains, err := readDomainFile(*flagDomainFile)
 	if err != nil {
 		log.Fatalf("error getting domains %q: %v", *flagDomainFile, err)
+	}
+	if !*flagQuiet {
+		for i := range domains {
+			log.Printf("INFO monitoring %s", domains[i])
+		}
 	}
 
 	// Setup internal checker
