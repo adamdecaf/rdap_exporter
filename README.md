@@ -23,8 +23,8 @@ Running the image looks like the following:
 
 ```
 # Using testdata/good.domains from repository
-$ docker run -it -p 9099:9099 -v $(pwd)/testdata:/conf adamdecaf/rdap_exporter:0.1.3 -domain-file=/conf/good.domains
-2018/05/28 21:15:31 starting rdap_exporter (0.1.3)
+$ docker run -it -p 9099:9099 -v $(pwd)/testdata:/conf adamdecaf/rdap_exporter:v0.2.0 -domain-file=/conf/good.domains
+2018/05/28 21:15:31 starting rdap_exporter (v0.2.0)
 2018/05/28 21:15:34 example.cz expires in 458.00 days
 ```
 
@@ -49,4 +49,4 @@ groups:
 
 If you find a bug, have a question or want more metrics exposed feel free to open either an issue or a Pull Request. I'll try and review it quickly and have it merged.
 
-You can build the sources with `make build`. Run tests with `make test`. Currently we required Go 1.10.
+You can build the sources with `make build`. Run tests with `make test`. Currently we use Go 1.13.
