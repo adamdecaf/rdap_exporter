@@ -10,3 +10,5 @@ require (
 	golang.org/x/crypto v0.0.0-20190605123033-f99c8df09eb5 // indirect
 	gopkg.in/jarcoal/httpmock.v1 v1.0.0-20181025172632-c463961d8bfe // indirect
 )
+
+go 1.13
