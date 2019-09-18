@@ -11,5 +11,8 @@ build:
 docker: build
 	docker build --pull -t adamdecaf/rdap_exporter:$(VERSION) -f Dockerfile .
 
+release-push:
+	docker push adamdecaf/rdap_exporter:$(VERSION)
+
 test:
 	go test -v ./...
