@@ -8,16 +8,16 @@ matrix:
     - go: master
   include:
     - os: linux
-      go: 1.13.x
+      go: 1.15.x
       cache:
         directories:
           - "/home/travis/.cache/go-build"
     - os: linux
       go: master
     - os: windows
-      go: 1.13.x
+      go: 1.15.x
     - os: osx
-      go: 1.13.x
+      go: 1.15.x
       cache:
         directories:
           - "/Users/travis/Library/Caches/go-build"
@@ -50,7 +50,7 @@ deploy:
   on:
     tags: true
     repo: adamdecaf/rdap_exporter
-    go: 1.13.x
+    go: 1.15.x
   skip_cleanup: true
 
 after_deploy:
