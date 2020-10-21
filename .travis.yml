@@ -24,7 +24,6 @@ matrix:
 before_install:
   - go get -u github.com/client9/misspell/cmd/misspell
   - go get -u golang.org/x/lint/golint
-  - go get github.com/fzipp/gocyclo
   - go get -u honnef.co/go/tools/cmd/staticcheck
   - go get golang.org/x/tools/cmd/cover
 before_script:
@@ -34,7 +33,6 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then test -z $(gofmt -s -l $GOFILES); fi
   - go test ./... -race -coverprofile=coverage.txt -covermode=atomic
   - misspell -error -locale US $GOFILES
-  - gocyclo -over 20 $GOFILES
   - golint -set_exit_status $GOFILES
   - staticcheck *.go
   - if [[ "$TRAVIS_OS_NAME" == "windows" ]]; then choco install -y mingw; export PATH=/c/tools/mingw64/bin:"$PATH";fi
