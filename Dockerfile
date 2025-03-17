@@ -1,4 +1,4 @@
-FROM golang:1.13-alpine as builder
+FROM golang:1.24-alpine as builder
 RUN adduser -D -g '' --shell /bin/false rdap
 WORKDIR /go/src/github.com/adamdecaf/rdap_exporter
 COPY . .
