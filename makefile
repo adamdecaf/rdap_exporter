@@ -2,6 +2,16 @@ VERSION := $(shell grep -Eo '(v\d\.\d\.\d)(-dev)?' main.go | head -n1)
 
 .PHONY: build deps docker
 
+.PHONY: check
+check:
+ifeq ($(OS),Windows_NT)
+	go test ./...
+else
+	@wget -O lint-project.sh https://raw.githubusercontent.com/moov-io/infra/master/go/lint-project.sh
+	@chmod +x ./lint-project.sh
+	COVER_THRESHOLD=50.0 ./lint-project.sh
+endif
+
 build:
 	go fmt ./...
 	go vet ./...

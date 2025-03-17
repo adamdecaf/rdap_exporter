@@ -12,3 +12,6 @@
 *.out
 
 bin/
+
+/lint-project.sh
+rdap_exporter
