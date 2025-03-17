@@ -86,7 +86,18 @@ func main() {
 	http.Handle("/metrics", h)
 
 	log.Printf("listenting on %s", *flagAddress)
-	if err := http.ListenAndServe(*flagAddress, nil); err != nil {
+
+	// Create server with timeout configurations
+	server := &http.Server{
+		Addr:              *flagAddress,
+		Handler:           nil, // Uses DefaultServeMux
+		ReadTimeout:       10 * time.Second,
+		WriteTimeout:      10 * time.Second,
+		IdleTimeout:       30 * time.Second,
+		ReadHeaderTimeout: 5 * time.Second,
+	}
+
+	if err := server.ListenAndServe(); err != nil {
 		log.Fatalf("ERROR binding to %s: %v", *flagAddress, err)
 	}
 }
