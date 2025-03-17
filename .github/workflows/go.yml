@@ -29,3 +29,13 @@ jobs:
 
     - name: Check
       run: make check
+
+  docker:
+    name: Docker Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out code into the Go module directory
+      uses: actions/checkout@v4
+
+    - name: Docker
+      run: make docker
